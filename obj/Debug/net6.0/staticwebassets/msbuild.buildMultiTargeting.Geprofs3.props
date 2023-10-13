@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Geprofs3.props" />
+</Project>
