@@ -37,9 +37,7 @@ namespace Geprofs3.Controllers
         {
             var aanvragen = from a in _context.VerlofAanvraag
                             select a;
-
-            Console.WriteLine(columns);
-
+            
             if (!String.IsNullOrEmpty(columns) && !String.IsNullOrEmpty(searchString))
             {
                 switch (columns)
