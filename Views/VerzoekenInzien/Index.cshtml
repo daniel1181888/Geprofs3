@@ -65,8 +65,8 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    <a asp-action="StatusVeranderen" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="StatusVeranderen" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">edit</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Id">Details</a>
                 </td>
             </tr>
         }
