@@ -49,8 +49,17 @@ namespace Geprofs3.Controllers
             Users.Add(user3);
         }
 
-        public async Task<IActionResult> Index(string columns, string searchString)
+        public async Task<IActionResult> Index(string columns, string searchString, string verzoekId, string verzoekKeuring)
         {
+            if (!String.IsNullOrEmpty(verzoekId) && !String.IsNullOrEmpty(verzoekKeuring))
+            {
+                VerlofAanvraag verzoek = _context.VerlofAanvraag.FirstOrDefault(a => a.Id == Convert.ToInt32(verzoekId));
+                verzoek.Status = verzoekKeuring;
+                _context.Update(verzoek);
+                _context.SaveChanges();
+
+            }
+
             var aanvragen = from a in _context.VerlofAanvraag
                             where a.Status.ToLower() == "afwachting"
                             select a;
