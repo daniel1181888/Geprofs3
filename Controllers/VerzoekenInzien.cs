@@ -60,9 +60,7 @@ namespace Geprofs3.Controllers
 
             }
 
-            var aanvragen = from a in _context.VerlofAanvraag
-                            where a.Status.ToLower() == "afwachting"
-                            select a;
+            var aanvragen = from a in _context.VerlofAanvraag select a;
 
             if (!String.IsNullOrEmpty(columns) && !String.IsNullOrEmpty(searchString))
             {
