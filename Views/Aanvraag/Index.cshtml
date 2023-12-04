@@ -19,11 +19,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Reden" class="control-label">Reden voor verlof:</label>
-                <select>
-                    <option value="Reden">Ziek</option>
-                    <option value="Reden">Vakantie</option>
-                    <option value="Reden">anders</option>
+                <select name="Reden">
+                    <option asp-for="Reden">Ziek</option>
+                    <option asp-for="Reden">Vakantie</option>
+                    <option asp-for="Reden">anders</option>
                 </select>
+                <span asp-validation-for="Reden" class="text-danger"></span>
             </div>
             <input type="submit" value="Verlof aanvragen" class="btn btn-primary" />
         </form>
