@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Geprofs3.Data;
+using Microsoft.AspNetCore.Identity;
 namespace Geprofs3
 {
     public class Program
@@ -10,6 +11,9 @@ namespace Geprofs3
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<Geprofs3Context>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Geprofs3Context") ?? throw new InvalidOperationException("Connection string 'Geprofs3Context' not found.")));
+
+                        builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<Geprofs3Context>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -29,11 +33,13 @@ namespace Geprofs3
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapRazorPages();
 
             app.Run();
         }

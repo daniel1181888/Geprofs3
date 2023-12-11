@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Geprofs3.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Geprofs3.Data
 {
-    public class Geprofs3Context : DbContext
+    public class Geprofs3Context : IdentityDbContext
     {
         public Geprofs3Context (DbContextOptions<Geprofs3Context> options)
             : base(options)
