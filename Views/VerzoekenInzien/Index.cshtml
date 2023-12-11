@@ -5,13 +5,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Inzien</h1>
+
+
+
+<h1>Inziens</h1>
+
+<form asp-controller="VerzoekenInzien" asp-action="Index">
+    <p>
+        <select name="columns" id="columns">
+            <option value="naam">Naam</option>
+            <option value="rol">Rol</option>
+            <option value="afdeling">Afdeling</option>
+            <option value="status">Status</option>
+        </select>
+        <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Naam)
             </th>
@@ -25,9 +39,6 @@
                 @Html.DisplayNameFor(model => model.BeginDatum)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EindDatum)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Reden)
             </th>
             <th>
@@ -39,10 +50,12 @@
     <tbody>
         @foreach (var item in Model)
         {
+            if (item.Status.ToLower() != "afwachting")
+            {
+                continue;
+            }
+
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Naam)
                 </td>
@@ -54,9 +67,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.BeginDatum)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EindDatum)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Reden)
@@ -75,6 +85,61 @@
                         <input type="text" name="verzoekKeuring" value="Afgekeurd" hidden />
                         <input type="submit" value="Afkeuren" />
                     </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rol)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Afdeling)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BeginDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reden)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.Status.ToLower() == "afwachting")
+            {
+                continue;
+            }
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Afdeling)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeginDatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reden)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
                 </td>
             </tr>
         }
