@@ -7,14 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Geprofs3.Data;
 using Geprofs3.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Geprofs3.Controllers
 {
+    [Authorize]
+
     public class VerlofAanvraagsController : Controller
     {
         private readonly Geprofs3Context _context;
 
+        
+
         public VerlofAanvraagsController(Geprofs3Context context)
+
         {
             _context = context;
         }
@@ -35,6 +41,7 @@ namespace Geprofs3.Controllers
 
         public async Task<IActionResult> Index(string columns, string searchString)
         {
+           
             var aanvragen = from a in _context.VerlofAanvraag
                             select a;
             

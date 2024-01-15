@@ -1,12 +1,16 @@
 ﻿using Geprofs3.Data;
 using Geprofs3.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Geprofs3.Controllers
 {
+    [Authorize]
     public class VerzoekenInzien : Controller
     {
+
+
         private readonly Geprofs3Context _context;
         private List<User> Users = new List<User>();
         string[] _statussen = Models.User.Statussen();

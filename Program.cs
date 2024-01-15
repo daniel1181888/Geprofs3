@@ -12,11 +12,17 @@ namespace Geprofs3
             builder.Services.AddDbContext<Geprofs3Context>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Geprofs3Context") ?? throw new InvalidOperationException("Connection string 'Geprofs3Context' not found.")));
 
-                        builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<Geprofs3Context>();
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<Geprofs3Context>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddAuthorization(options =>
+                options.AddPolicy("Admin", policy =>
+                    policy.RequireAuthenticatedUser()
+                        .RequireClaim("IsAdmin", bool.TrueString)));
 
             var app = builder.Build();
 

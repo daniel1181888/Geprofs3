@@ -25,14 +25,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="VerlofAanvraags" asp-action="Index">Database</a>
-                        </li>
+                        @if (Context.User.HasClaim("IsAdmin", bool.TrueString))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="VerlofAanvraags" asp-action="Index">Database</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Aanvraag" asp-action="Index">Aanvraag</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="VerzoekenInzien" asp-action="Index">Verzoeken Inzien</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="">Rollen</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
