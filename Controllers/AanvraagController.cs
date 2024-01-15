@@ -1,10 +1,12 @@
 ﻿using Geprofs3.Data;
 using Geprofs3.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Geprofs3.Controllers
 {
+    [Authorize]
     public class AanvraagController : Controller
     {
         private readonly Geprofs3Context _context;

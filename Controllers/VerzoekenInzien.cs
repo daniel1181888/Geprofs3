@@ -6,11 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Geprofs3.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Manager")]
     public class VerzoekenInzien : Controller
     {
-
-
         private readonly Geprofs3Context _context;
         private List<User> Users = new List<User>();
         string[] _statussen = Models.User.Statussen();

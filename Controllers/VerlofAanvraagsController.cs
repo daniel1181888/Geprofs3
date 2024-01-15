@@ -11,13 +11,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Geprofs3.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
 
     public class VerlofAanvraagsController : Controller
     {
         private readonly Geprofs3Context _context;
-
-        
 
         public VerlofAanvraagsController(Geprofs3Context context)
 
@@ -25,23 +23,8 @@ namespace Geprofs3.Controllers
             _context = context;
         }
 
-        // GET: VerlofAanvraags
-        //public async Task<IActionResult> Index(string searchString)
-        //{
-        //    var aanvragen = from a in _context.VerlofAanvraag
-        //                 select a;
-
-        //    if (!String.IsNullOrEmpty(searchString))
-        //    {
-        //        aanvragen = aanvragen.Where(s => s.Naam!.Contains(searchString));
-        //    }
-
-        //    return View(await aanvragen.ToListAsync());
-        //}
-
         public async Task<IActionResult> Index(string columns, string searchString)
         {
-           
             var aanvragen = from a in _context.VerlofAanvraag
                             select a;
             
