@@ -18,18 +18,15 @@
                 <span asp-validation-for="BeginDatum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EindDatum" class="control-label"></label>
-                <input asp-for="EindDatum" class="form-control" />
-                <span asp-validation-for="EindDatum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Reden" class="control-label"></label>
-                <input asp-for="Reden" class="form-control" />
+                <label asp-for="Reden" class="control-label">Reden voor verlof:</label>
+                <select name="Reden">
+                    <option asp-for="Reden">Ziek</option>
+                    <option asp-for="Reden">Vakantie</option>
+                    <option asp-for="Reden">anders</option>
+                </select>
                 <span asp-validation-for="Reden" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Verlof aanvragen" class="btn btn-primary" />
-            </div>
+            <input type="submit" value="Verlof aanvragen" class="btn btn-primary" />
         </form>
     </div>
 </div>

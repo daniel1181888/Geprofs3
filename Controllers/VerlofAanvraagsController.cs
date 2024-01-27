@@ -7,31 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Geprofs3.Data;
 using Geprofs3.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Geprofs3.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class VerlofAanvraagsController : Controller
     {
         private readonly Geprofs3Context _context;
 
         public VerlofAanvraagsController(Geprofs3Context context)
+
         {
             _context = context;
         }
-
-        // GET: VerlofAanvraags
-        //public async Task<IActionResult> Index(string searchString)
-        //{
-        //    var aanvragen = from a in _context.VerlofAanvraag
-        //                 select a;
-
-        //    if (!String.IsNullOrEmpty(searchString))
-        //    {
-        //        aanvragen = aanvragen.Where(s => s.Naam!.Contains(searchString));
-        //    }
-
-        //    return View(await aanvragen.ToListAsync());
-        //}
 
         public async Task<IActionResult> Index(string columns, string searchString)
         {
@@ -127,7 +117,7 @@ namespace Geprofs3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Naam,Rol,Afdeling,BeginDatum,EindDatum,Reden,Status")] VerlofAanvraag verlofAanvraag)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Naam,Rol,Afdeling,BeginDatum,EindDatum,Reden,Status,Uren")] VerlofAanvraag verlofAanvraag)
         {
             if (id != verlofAanvraag.Id)
             {

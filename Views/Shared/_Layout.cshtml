@@ -25,16 +25,54 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="VerlofAanvraags" asp-action="Index">Database</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Aanvraag" asp-action="Index">Aanvraag</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="VerzoekenInzien" asp-action="Index">Verzoeken Inzien</a>
-                        </li>
+                        
+                        
+                         
+                        @{
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="VerlofAanvraags" asp-action="Index">Database</a>
+                                </li>
+
+                            }
+                        }
+                        @{
+                            if (User.IsInRole("Werknemer") || User.IsInRole("Admin") || User.IsInRole("Manager"))
+                                        {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Aanvraag" asp-action="Index">Aanvraag</a>
+                                </li>
+                            }
+                        }
+
+                        @{
+                            if(User.IsInRole("Manager") || User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="VerzoekenInzien" asp-action="Index">Verzoeken Inzien</a>
+                                </li>
+                                
+                            }
+                        }
+                        @{
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Rollen</a>
+                                </li>
+                            }
+                        }
+                        @{
+                            if (User.IsInRole("Werknemer") || User.IsInRole("Admin") || User.IsInRole("Manager"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="VerlofUren" asp-action="Index">Uren</a>
+                                </li>
+                            }
+                        }
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>

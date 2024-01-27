@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Geprofs3.Models.VerlofAanvraag>
+
+@{
+    ViewData["Title"] = "Uren";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Uren</h1>
+<p>@Model.Count() goedgekeurde verlofaanvragingen</p>
+<p>@(Model.Count() * 8) Uur afwezigheid</p>
