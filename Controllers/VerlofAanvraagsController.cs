@@ -117,7 +117,7 @@ namespace Geprofs3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Naam,Rol,Afdeling,BeginDatum,EindDatum,Reden,Status")] VerlofAanvraag verlofAanvraag)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Naam,Rol,Afdeling,BeginDatum,EindDatum,Reden,Status,Uren")] VerlofAanvraag verlofAanvraag)
         {
             if (id != verlofAanvraag.Id)
             {

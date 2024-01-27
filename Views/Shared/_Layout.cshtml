@@ -63,6 +63,14 @@
                                 </li>
                             }
                         }
+                        @{
+                            if (User.IsInRole("Werknemer") || User.IsInRole("Admin") || User.IsInRole("Manager"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="VerlofUren" asp-action="Index">Uren</a>
+                                </li>
+                            }
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

@@ -16,5 +16,7 @@ namespace Geprofs3.Models
         public DateTime EindDatum { get; set; }
         public string? Reden { get; set; }
         public string? Status { get; set; }
+
+       
     }
 }
